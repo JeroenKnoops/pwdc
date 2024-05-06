@@ -10,4 +10,10 @@ in
     version = manifest.version;
     cargoLock.lockFile = ./Cargo.lock;
     src = pkgs.lib.cleanSource ./.;
+    meta = with pkgs.lib; {
+      description = "This tool will take the current directory and puts it on the clipboard.";
+      homepage = "https://github.com/jeroenkoops/pwdc";
+      license = licenses.mit;
+      maintainers = [ jeroenknoops ];
+    };
   }
