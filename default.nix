@@ -14,6 +14,6 @@ in
       description = "This tool will take the current directory and puts it on the clipboard.";
       homepage = "https://github.com/jeroenkoops/pwdc";
       license = licenses.mit;
-      maintainers = [ jeroenknoops ];
+      maintainers = with maintainers; [ jeroenknoops ];
     };
   }
