@@ -1,11 +1,14 @@
-use clipboard::ClipboardProvider;
-use clipboard::ClipboardContext;
+use arboard::Clipboard;
 
-fn main() {
+fn main() -> Result<(), Box<dyn std::error::Error>> {
     let current_directory = std::env::current_dir().unwrap();
-    println!("Current directory: {:?} is now on your clipboard.", current_directory);
+    println!(
+        "Current directory: {:?} is now on your clipboard.",
+        current_directory
+    );
     let current_directory = current_directory.to_str().unwrap();
-    let mut ctx: ClipboardContext = ClipboardProvider::new().unwrap();
-    ctx.set_contents(current_directory.to_owned()).unwrap();
-}
 
+    let mut clipboard = Clipboard::new()?;
+    let _ = clipboard.set_text(current_directory.to_owned());
+    Ok(())
+}
