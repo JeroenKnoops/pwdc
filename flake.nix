@@ -51,6 +51,8 @@
             maintainers = with maintainers; [ jeroenknoops ];
           };
         };
+
+        homeModules.default = import ./home-module.nix;
       }
     );
 }
