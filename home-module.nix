@@ -1,13 +1,11 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, pwdcPackage ? null, ... }:
 
-let
-  inherit (pkgs.stdenv.hostPlatform) system;
-  pwdcPkg = (import ../flake.nix).outputs { inherit system; nixpkgs = pkgs; }.packages.${system}.default;
-in {
-  options.programs.pwdc.enable = lib.mkEnableOption "Enable pwdc";
+{
+  options.programs.pwdc.enable = lib.mkEnableOption "Enable the pwdc CLI tool";
 
   config = lib.mkIf config.programs.pwdc.enable {
-    home.packages = [ pwdcPkg ];
+    assert pwdcPackage != null;
+    home.packages = [ pwdcPackage ];
   };
 }
 
